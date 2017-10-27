@@ -253,3 +253,8 @@ button:hover{
   float: left;
   margin-right: 50px;
 }
+
+.shopping-cart-image img{
+    width:10px;
+
+}

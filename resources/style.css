@@ -188,7 +188,7 @@ p{
 .container{
   display: flex;
   margin: 150px;
-  margin-top: 80px;
+  margin-top: 150px;
   width: 80%;
   height: auto;
 }
@@ -252,4 +252,20 @@ button:hover{
   margin-top: 0px;
   float: left;
   margin-right: 50px;
+}
+/*shopping cart image size*/
+.shopping-cart-image{
+  width: 10%;
+}
+.list{
+  position: absolute;
+  margin-top: 120pt;
+}
+
+.total-quantity{
+  position: absolute;
+  top: 18pt;
+  right: 97pt;
+  text-decoration: none;
+  color: black;
 }
