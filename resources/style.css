@@ -99,8 +99,25 @@ float: right;
     padding: 10px;
     border-style: solid;
     border-width: thin;
+    color: black;
+    text-decoration: none;
   }
-
+a {
+  text-decoration: none;
+}
+#option-square:hover,
+#option-all:hover,
+#option-round:hover,
+#option-dog:hover,
+#option-bunny:hover,
+#option-cat:hover,
+#option-couch:hover,
+#option-bed:hover,
+#option-floor:hover,
+#option-bear:hover{
+  color: white;
+  background: rgb(150,150,150);
+}
 /* product page - drop shadow for shop by types & shapes nav bar*/
 .options{
   box-shadow: 0 1px 20px rgba(0, 0, 0, 0.1);
@@ -256,10 +273,14 @@ button:hover{
 /*shopping cart image size*/
 .shopping-cart-image{
   width: 10%;
+  vertical-align: middle;
 }
 .list{
   position: absolute;
+  margin-left: 30pt;
+  margin-right: 30pt;
   margin-top: 120pt;
+  width: 100%;
 }
 
 .total-quantity{
@@ -268,4 +289,52 @@ button:hover{
   right: 97pt;
   text-decoration: none;
   color: black;
+}
+/*shopping cart list layout*/
+#shopping-cart-title{
+  margin-top: 30pt;
+  width: 95%;
+}
+/*shopping list detail title location*/
+.selected-pillow-price,
+.selected-pillow-quantity,
+.selected-pillow-name {
+  margin-left: calc(100%/10);
+  display:inline-block;
+}
+/*delete button location*/
+#remove-pillow
+#delete-pillow{
+  margin-left: calc(100%/4);
+}
+/*shopping list detail title size*/
+.selected-pillow-price,
+.selected-pillow-quantity{
+  width: 10%;
+}
+
+.selected-pillow-name{
+  width: 20%;
+}
+/*shopping cart and wishlist larger title style and size*/
+#total-price{
+  margin-top: 30px;
+  text-align: right;
+  width: 95%;
+  font-size: 20pt;
+}
+#shopping-list li,
+#wishlist li{
+  background-color: rgb(248,248,248);
+  padding: 0;
+  margin: 10px;
+  width: 95%;
+}
+#wishlist-item-title{
+  margin-top: 30px;
+  width: 95%;
+}
+#take-a-look{
+  color: grey;
+  text-decoration: underline;
 }

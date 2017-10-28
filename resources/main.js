@@ -187,6 +187,7 @@ $(document).ready(function(){
         if (!itemAdded){
          selectedPillows.push(newPillow);
         }
+        $("#add-to-cart").html("Added!");
       }
       var jsonSelectedPillows = JSON.stringify(selectedPillows);
       localStorage.setItem("addToCart", jsonSelectedPillows);
@@ -247,6 +248,7 @@ $(document).ready(function(){
           if (!itemAdded){
            savedPillows.push(newPillow);
           }
+          $("#add-to-wishlist").html("Added!");
         }
         var jsonSavedPillows = JSON.stringify(savedPillows);
         localStorage.setItem("addToWishlist", jsonSavedPillows);
@@ -258,7 +260,7 @@ $(document).ready(function(){
         savedPillowsInfo = [];
       } else{
         savedPillows = savedPillowsInfo;}
-        //add information of selected pillows to display on shopping cart page
+        //add information of selected pillows to display on wishlist
         var wishlist = $("#wishlist");
         var i=0;
         while (i<savedPillows.length){
@@ -267,6 +269,7 @@ $(document).ready(function(){
           addThisPillow.name + "</span>" + "<span class='selected-pillow-price'>$" + addThisPillow.price + "</span>" + "<button class='remove-pillow'>X</button>" + "</li>")
           i++;
         }
+
         //remove pillow from wishlist when click on X button
         $(document).on("click", ".remove-pillow ", function(){
           var removePillowSrc = $(this).parent().children(".shopping-cart-image").attr("src");
@@ -279,10 +282,121 @@ $(document).ready(function(){
               i++;
             }
           }
+          totalPriceWishlist();
           localStorage.setItem("addToWishlist", JSON.stringify(savedPillows));
           $(this).parent().remove();
         })
-})
+        totalPriceWishlist();
+
+        //filter through shapes and types
+        //load the whole list when click all
+        $(document).on("click", "#option-all", function(){
+          location.reload();
+        })
+        //only show square on shape page
+        $(document).on("click", "#option-square", function(){
+          $(".image-block").html("<div class='image-row'>" + "<a href='detail.html?square-1'>" + "<img class='square couch item-1' id='square-1' src='images/square-1.jpg'/>" +
+          "</a>" + "<a href='detail.html?square-2'>" + "<img class='square couch item-2' id='square-2' src='images/square-2.jpg'/>" + "</a>" + "<a href='detail.html?square-3'>" +
+          "<img class='square couch item-3' id='square-3' src='images/square-3.jpg'/>" + "</a>" + "<a href='detail.html?square-4'>" +
+          "<img class='square couch item-4' id='square-4' src='images/square-4.jpg'/>" + "</a>"+"</div>')" +
+          "<div class='image-row'>" + "<a href='detail.html?bed-1'>" + "<img class='bed square item-1' id='bed-1' src='images/bed-1.jpg'/>" + "</a>" +
+          "<a href='detail.html?bed-2'>" + "<img class='bed square item-2' id='bed-2' src='images/bed-2.jpg'/>" + "</a>" + "<a href='detail.html?bed-3'>" +
+          "<img class='bed square item-3' id='bed-3' src='images/bed-3.jpg'/>" + "</a>" + "<a href='detail.html?bed-4'>" +
+          "<img class='bed square item-4' id='bed-4' src='images/bed-4.jpg'/>" + "</a>" + "</div>");
+          $("h3").css("background-color","white");
+          $("h3").css("color", "black");
+          $("#option-square").css("background-color", "black");
+          $("#option-square").css("color", "white");
+        })
+        //only show round on shape page and type page
+        $(document).on("click", "#option-round", function(){
+          $(".image-block").html(  "<div class='image-row'>" + "<a href='detail.html?round-1'>" + "<img class='round couch item-1' id='round-1' src='images/round-1.jpg'/>" +
+          "</a>" + "<a href='detail.html?round-2'>" + "<img class='round couch item-2' id='round-2' src='images/round-2.jpg'/>" + "</a>" + "<a href='detail.html?round-3'>" +
+          "<img class='round couch item-3' id='round-3' src='images/round-3.jpg'/>" + "</a>" + "<a href='detail.html?round-4'>" +
+          "<img class='round couch item-4' id='round-4' src='images/round-4.jpg'/>" + "</a>" + "</div>" + "<div class='image-row'>" + "<a href='detail.html?floor-1'>" +
+          "<img class='round floor item-1' id='floor-1' src='images/floor-1.jpg'/>" + "</a>" + "<a href='detail.html?floor-2'>" +
+          "<img class='round floor item-2' id='floor-2' src='images/floor-2.jpg'/>" + "</a>" + "<a href='detail.html?floor-3'>" +
+          "<img class='round floor item-3' id='floor-3' src='images/floor-3.jpg'/>" + "</a>" + "<a href='detail.html?floor-4'>" +
+          "<img class='round floor item-4' id='floor-4' src='images/floor-4.jpg'/>" + "</a>" + "</div>");
+          $("h3").css("background-color","white");
+          $("h3").css("color", "black");
+          $("#option-round").css("background-color", "black");
+          $("#option-round").css("color", "white");
+        })
+        //only show dog on shape page
+        $(document).on("click", "#option-dog", function(){
+          $(".image-block").html("<div class='image-row'>" + "<a href='detail.html?animal-3'>" +
+          "<img class='dog couch item-3' id='animal-3' src='images/animal-3.jpg'/>" + "</a>" + "</div>");
+          $("h3").css("background-color","white");
+          $("h3").css("color", "black");
+          $("#option-dog").css("background-color", "black");
+          $("#option-dog").css("color", "white");
+        })
+        //only show bear on shape page
+        $(document).on("click", "#option-bear", function(){
+          $(".image-block").html("<div class='image-row'>" + "<a href='detail.html?animal-1'>" +
+          "<img class='bear couch item-1' id='animal-1' src='images/animal-1.jpg'/>" + "</a>" + "</div>");
+          $("h3").css("background-color","white");
+          $("h3").css("color", "black");
+          $("#option-bear").css("background-color", "black");
+          $("#option-bear").css("color", "white");
+        })
+        //only show bunny on shape page
+        $(document).on("click", "#option-bunny", function(){
+          $(".image-block").html("<div class='image-row'>" + "<a href='detail.html?animal-4'>" +
+          "<img class='bunny couch item-4' id='animal-4' src='images/animal-4.jpg'/>" + "</a>" + "</div>");
+          $("h3").css("background-color","white");
+          $("h3").css("color", "black");
+          $("#option-bunny").css("background-color", "black");
+          $("#option-bunny").css("color", "white");
+        })
+        //only show cat on shape page
+        $(document).on("click", "#option-cat", function(){
+          $(".image-block").html("<div class='image-row'>" + "<a href='detail.html?animal-2'>" +
+          "<img class='cat couch item-2' id='animal-2' src='images/animal-2.jpg'/>" + "</a>" + "</div>");
+          $("h3").css("background-color","white");
+          $("h3").css("color", "black");
+          $("#option-cat").css("background-color", "black");
+          $("#option-cat").css("color", "white");
+        })
+        //only show floor pillow on type page
+        $(document).on("click", "#option-floor", function(){
+          $(".image-block").html("</div>" + "<div class='image-row'>" + "<a href='detail.html?floor-1'>" +
+          "<img class='round floor item-1' id='floor-1' src='images/floor-1.jpg'/>" + "</a>" + "<a href='detail.html?floor-2'>" +
+          "<img class='round floor item-2' id='floor-2' src='images/floor-2.jpg'/>" + "</a>" + "<a href='detail.html?floor-3'>" +
+          "<img class='round floor item-3' id='floor-3' src='images/floor-3.jpg'/>" + "</a>" + "<a href='detail.html?floor-4'>" +
+          "<img class='round floor item-4' id='floor-4' src='images/floor-4.jpg'/>" + "</a>" + "</div>");
+          $("h3").css("background-color","white");
+          $("h3").css("color", "black");
+          $("#option-floor").css("background-color", "black");
+          $("#option-floor").css("color", "white");
+        })
+        //only show bed pillow on type page
+        $(document).on("click", "#option-bed", function(){
+          $(".image-block").html("<div class='image-row'>" + "<a href='detail.html?bed-1'>" + "<img class='bed square item-1' id='bed-1' src='images/bed-1.jpg'/>" + "</a>" +
+          "<a href='detail.html?bed-2'>" + "<img class='bed square item-2' id='bed-2' src='images/bed-2.jpg'/>" + "</a>" + "<a href='detail.html?bed-3'>" +
+          "<img class='bed square item-3' id='bed-3' src='images/bed-3.jpg'/>" + "</a>" + "<a href='detail.html?bed-4'>" +
+          "<img class='bed square item-4' id='bed-4' src='images/bed-4.jpg'/>" + "</a>" + "</div>");
+          $("h3").css("background-color","white");
+          $("h3").css("color", "black");
+          $("#option-bed").css("background-color", "black");
+          $("#option-bed").css("color", "white");
+        })
+        //only show couch pillow on type page
+        $(document).on("click", "#option-couch", function(){
+          $(".image-block").html("<div class='image-row'>" + "<a href='detail.html?square-1'>" + "<img class='square couch item-1' id='square-1' src='images/square-1.jpg'/>" +
+          "</a>" + "<a href='detail.html?square-2'>" + "<img class='square couch item-2' id='square-2' src='images/square-2.jpg'/>" + "</a>" + "<a href='detail.html?square-3'>" +
+          "<img class='square couch item-3' id='square-3' src='images/square-3.jpg'/>" + "</a>" + "<a href='detail.html?square-4'>" +
+          "<img class='square couch item-4' id='square-4' src='images/square-4.jpg'/>" + "</a>"+"</div>')" + "<div class='image-row'>" + "<a href='detail.html?round-1'>" + "<img class='round couch item-1' id='round-1' src='images/round-1.jpg'/>" +
+          "</a>" + "<a href='detail.html?round-2'>" + "<img class='round couch item-2' id='round-2' src='images/round-2.jpg'/>" + "</a>" + "<a href='detail.html?round-3'>" +
+          "<img class='round couch item-3' id='round-3' src='images/round-3.jpg'/>" + "</a>" + "<a href='detail.html?round-4'>" +
+          "<img class='round couch item-4' id='round-4' src='images/round-4.jpg'/>" + "</a>" + "</div>");
+          $("h3").css("background-color","white");
+          $("h3").css("color", "black");
+          $("#option-couch").css("background-color", "black");
+          $("#option-couch").css("color", "white");
+        })
+      })
 //function to calculate the total price of pillows in shopping cart
 function totalPrice(){
   if(selectedPillows === null){
@@ -296,6 +410,29 @@ function totalPrice(){
       i++;
     }
     $("#total-price").html("Total: $" + total)
+    if (total == 0){
+      $("#total-price").hide();
+      $("#shopping-cart-title").hide();
+      $("#shopping-list-title").html("Your shopping cart is empty. <a id = 'take-a-look' href = 'types.html'>Take a look</a> at our beautiful collection ❤")
+    }
+  }
+}
+//function to calculate the total price of pillows in wishlist to display empty message
+function totalPriceWishlist(){
+  if(savedPillows === null){
+    selectedPillows = [];
+  }else{
+    var i = 0;
+    var total = 0;
+    while (i<savedPillows.length){
+      var itemTotal = (savedPillows[i].quantity)*(savedPillows[i].price);
+      total = total + itemTotal;
+      i++;
+    }
+    if (total == 0){
+      $("#wishlist-item-title").hide();
+      $("#wishlist-title").html("Your wishlist is empty. <a id = 'take-a-look' href = 'types.html'>Take a look</a> at our beautiful collection ❤");
+    }
   }
 }
 //return the number of items in shopping cart above shopping cart logo
@@ -310,5 +447,6 @@ function totalQuantity(){
       totalQuantity = totalQuantity + itemQuantity;
       i++;
     }
-    $("#shopping-cart-logo").parent().append("<div class = 'total-quantity'>" + totalQuantity + "</div>");}
+    $("#shopping-cart-logo").parent().append("<div class = 'total-quantity'>" + totalQuantity + "</div>");
+  }
 }
